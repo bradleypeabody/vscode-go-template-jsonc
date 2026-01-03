@@ -1,50 +1,58 @@
-# Go Template Syntax Highlight Support for VSCode
+# JSONC Go Template Support for VSCode
 
-[![Launched](https://img.shields.io/badge/VSCode--Go--Template-launched-brightgreen.svg?logo=visual-studio-code)](https://github.com/jinliming2/vscode-go-template)
 [![GitHub license](https://img.shields.io/github/license/jinliming2/vscode-go-template.svg)](https://raw.githubusercontent.com/jinliming2/vscode-go-template/master/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/jinliming2/vscode-go-template.svg)](https://github.com/jinliming2/vscode-go-template/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/jinliming2/vscode-go-template.svg)](https://github.com/jinliming2/vscode-go-template/network)
-[![GitHub issues](https://img.shields.io/github/issues/jinliming2/vscode-go-template.svg)](https://github.com/jinliming2/vscode-go-template/issues)
-[![Coverage Status](https://coveralls.io/repos/github/jinliming2/vscode-go-template/badge.svg?branch=master)](https://coveralls.io/github/jinliming2/vscode-go-template?branch=master)
 
-Go Template Syntax Highlight Support for VSCode.
-
-## Release
-
-- **[Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=jinliming2.vscode-go-template) / Recommend**
-- [GitHub Release](https://github.com/jinliming2/vscode-go-template/releases)
+Syntax highlighting for Go text/template syntax embedded in JSONC (JSON with Comments) files.
 
 ## Features
 
-- Support syntax highlighting for Go Template embedded in literal string in Go source file.
+- **Full JSONC support** - Line comments (`//`), block comments (`/* */`), and trailing commas
+- **Go template syntax highlighting** - Complete syntax highlighting within `{{ }}` delimiters
+- **Semantic token support** - Precise syntax highlighting for complex Go template constructs
+- **Editor features** - Auto-closing pairs, bracket matching, and intelligent formatting
 
-  ![Go](./assets/screenshots/go.png)
+## Supported Files
 
-- Support syntax highlighting for Go Template files: `*.go.txt`, `*.go.tpl`, `*.go.tmpl`, `*.gtpl`.
+- `*.jsonc.gotmpl` - JSONC files with Go template syntax
 
-  ![Template](./assets/screenshots/tpl.png)
+## Example
 
-- Support syntax highlighting for Go Template embedded in Markdown.
+```jsonc
+{
+  // Configuration with Go templates
+  "projectName": "{{ .ProjectName }}",
+  "version": "{{ .Version }}",
+  "description": "{{ .Description | default "No description" }}",
 
-  ![Markdown](./assets/screenshots/markdown.png)
+  "features": [
+    {{ range .Features }}
+    "{{ . }}",
+    {{ end }}
+  ],
 
-- Support syntax highlighting for Go Template embedded in `HTML`, `JS`, and `CSS` files.
+  "environment": {
+    {{ if .IsDevelopment }}
+    "mode": "development",
+    {{ else }}
+    "mode": "production",
+    {{ end }}
+    "debug": {{ .Debug }}
+  },
+}
+```
 
-  ![HTML](./assets/screenshots/html.png)
+## Installation
 
-- Support syntax highlighting for Go Template embedded in unknown extension files which begin with Go Template Comment. Ex: `{{ /* Go Template */ }}`.
-
-  ![Comment](./assets/screenshots/comment.png)
-
-- Support syntax highlighting for any other custom specified file extensions.
-
-  ![Custom](./assets/screenshots/custom.png)
+Install from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=jinliming2.vscode-go-template) or build from source.
 
 ## Known Issues
 
-1. This extension cannot bypass grammar check error from Language Server.
-1. Template syntax highlighting in some languages may need to reload extension. (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> `go-template.reload`)
+- JSON language server validation is not available for `.jsonc.gotmpl` files (by design, to avoid errors on template syntax)
 
 ## Release Notes
 
-[Changelog](./CHANGELOG.md)
+See [CHANGELOG.md](./CHANGELOG.md) for version history.
+
+## License
+
+MIT

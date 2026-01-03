@@ -1,65 +1,49 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "name": "Go Template",
-  "scopeName": "source.go-template",
+  "name": "JSONC Go Template",
+  "scopeName": "source.jsonc.gotmpl",
   "patterns": [
     {
-      "include": "#comments"
+      "include": "#go-template-tag"
     },
     {
-      "include": "#operators"
-    },
-    {
-      "include": "#variables"
-    },
-    {
-      "include": "#keywords"
-    },
-    {
-      "begin": "\"",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.begin.go-template"
-        }
-      },
-      "end": "(?<!(?<!\\\\)\\\\)\"",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.go-template"
-        }
-      },
-      "name": "string.quoted.double.go-template",
-      "patterns": [
-        {
-          "include": "#string_escaped_char"
-        },
-        {
-          "include": "#string_placeholder"
-        }
-      ]
-    },
-    {
-      "begin": "`",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.begin.go-template"
-        }
-      },
-      "end": "`",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.go-template"
-        }
-      },
-      "name": "string.quoted.raw.go-template",
-      "patterns": [
-        {
-          "include": "#string_placeholder"
-        }
-      ]
+      "include": "source.json"
     }
   ],
   "repository": {
+    "go-template-tag": {
+      "begin": "\\{\\{-?[\\t ]*",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.embedded.begin.go-template"
+        }
+      },
+      "end": "[\\t ]*-?\\}\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.embedded.end.go-template"
+        }
+      },
+      "name": "meta.embedded.go-template",
+      "contentName": "source.go-template",
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#operators"
+        },
+        {
+          "include": "#variables"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#strings"
+        }
+      ]
+    },
     "comments": {
       "patterns": [
         {
@@ -107,6 +91,53 @@
         {
           "match": "\\b(and|call|html|index|slice|js|len|not|or|print(f|ln)?|urlquery|eq|ne|lt|le|gt|ge)\\b",
           "name": "support.function.builtin.go-template"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "begin": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.go-template"
+            }
+          },
+          "end": "(?<!(?<!\\\\)\\\\)\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.go-template"
+            }
+          },
+          "name": "string.quoted.double.go-template",
+          "patterns": [
+            {
+              "include": "#string_escaped_char"
+            },
+            {
+              "include": "#string_placeholder"
+            }
+          ]
+        },
+        {
+          "begin": "`",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.go-template"
+            }
+          },
+          "end": "`",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.go-template"
+            }
+          },
+          "name": "string.quoted.raw.go-template",
+          "patterns": [
+            {
+              "include": "#string_placeholder"
+            }
+          ]
         }
       ]
     },

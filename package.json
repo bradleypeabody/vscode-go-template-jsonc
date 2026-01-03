@@ -1,8 +1,8 @@
 {
-  "name": "vscode-go-template",
-  "displayName": "Go Template Support",
-  "description": "Syntax highlight support for Go text/template and html/template",
-  "version": "0.2.1",
+  "name": "vscode-jsonc-gotmpl",
+  "displayName": "JSONC Go Template",
+  "description": "Syntax highlighting for Go text/template embedded in JSONC files",
+  "version": "0.3.0",
   "publisher": "jinliming2",
   "license": "MIT",
   "homepage": "https://github.com/jinliming2/vscode-go-template",
@@ -26,18 +26,20 @@
     "Programming Languages"
   ],
   "keywords": [
+    "jsonc",
+    "json",
     "go",
     "template",
-    "highlight",
-    "syntax"
+    "comments",
+    "gotmpl"
   ],
   "main": "./out/extension.js",
   "scripts": {
-    "vscode:prepublish": "yarn run compile",
+    "vscode:prepublish": "npm run compile",
     "clean": "rm -rf ./{out,coverage,.nyc_output}",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "yarn run compile && yarn run lint",
+    "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js"
   },
@@ -64,74 +66,32 @@
     "vscode-test": "1.5.1"
   },
   "activationEvents": [
-    "onStartupFinished",
-    "onCommand:go-template.reload"
+    "onLanguage:jsonc-gotmpl"
   ],
   "contributes": {
     "languages": [
       {
-        "id": "go-template",
+        "id": "jsonc-gotmpl",
         "aliases": [
-          "Go Template",
-          "go-template"
+          "JSONC Go Template",
+          "jsonc-gotmpl"
         ],
         "extensions": [
-          ".go.txt",
-          ".go.tpl",
-          ".go.tmpl",
-          ".gtpl"
+          ".jsonc.gotmpl"
         ],
-        "firstLine": "[\\t ]*\\{\\{(-[\\t ])?\\/\\*.*?\\*\\/([\\t ]-)?\\}\\}[\\t ]*",
         "configuration": "./language-configuration.json"
       }
     ],
     "grammars": [
       {
-        "language": "go-template",
-        "scopeName": "source.go-template",
-        "path": "./syntaxes/go-template.tmLanguage.json"
-      },
-      {
-        "language": "go-template",
-        "scopeName": "source.go.injection.double.go-template",
-        "path": "./syntaxes/go-double.go-template.tmLanguage.json",
-        "injectTo": [
-          "source.go"
-        ]
-      },
-      {
-        "language": "go-template",
-        "scopeName": "source.go.injection.raw.go-template",
-        "path": "./syntaxes/go-raw.go-template.tmLanguage.json",
-        "injectTo": [
-          "source.go"
-        ]
-      },
-      {
-        "language": "go-template",
-        "scopeName": "text.injection.go-template",
-        "path": "./syntaxes/injection.go-template.tmLanguage.json",
-        "injectTo": [
-          "source.css",
-          "source.js",
-          "source.json",
-          "text.html.derivative",
-          "text.xml"
-        ]
-      },
-      {
-        "scopeName": "text.markdown.go-template.codeblock",
-        "path": "./syntaxes/markdown.go-template.tmLanguage.json",
-        "injectTo": [
-          "text.html.markdown"
-        ],
-        "embeddedLanguages": {
-          "meta.embedded.block.go-template": "go-template"
-        }
+        "language": "jsonc-gotmpl",
+        "scopeName": "source.jsonc.gotmpl",
+        "path": "./syntaxes/jsonc-gotmpl.tmLanguage.json"
       }
     ],
     "semanticTokenScopes": [
       {
+        "language": "jsonc-gotmpl",
         "scopes": {
           "goTemplate": [
             "source.go-template"
@@ -214,32 +174,6 @@
       {
         "id": "placeholder",
         "superType": "string"
-      }
-    ],
-    "configuration": {
-      "title": "Go Template Support",
-      "properties": {
-        "go-template.languages": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "language id, like \"toml\", \"yaml\", etc."
-        },
-        "go-template.patterns": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "markdownDescription": "A file glob pattern to match file paths against. This can either be a glob pattern string (like `**/*.yaml` or `**/*.{yaml,yml}`).\nGlob patterns can have the following syntax:\n\n* `*` to match one or more characters in a path segment\n* `?` to match on one character in a path segment\n* `**` to match any number of path segments, including none\n* `{}` to group conditions (e.g. `**​/*.{ts,js}` matches all TypeScript and JavaScript files)\n* `[]` to declare a range of characters to match in a path segment (e.g., `example.[0-9]` to match on `example.0`, `example.1`, …)\n* `[!...]` to negate a range of characters to match in a path segment (e.g., `example.[!0-9]` to match on `example.a`, `example.b`, but not `example.0`)\n\nNote: a backslash (`\\`) is not valid within a glob pattern."
-        }
-      }
-    },
-    "commands": [
-      {
-        "command": "go-template.reload",
-        "title": "Reload Go Template Syntax Highlight Support",
-        "category": "Go Template"
       }
     ]
   }

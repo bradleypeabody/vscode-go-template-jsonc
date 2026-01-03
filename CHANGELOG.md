@@ -2,6 +2,31 @@
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-01-03
+
+### Changed
+
+- **BREAKING:** Complete rewrite to focus exclusively on JSONC + Go template files
+- Only supports `.jsonc.gotmpl` file extension
+- Simplified extension with no dynamic configuration
+- Extension now activates only when opening `.jsonc.gotmpl` files (lazy activation)
+
+### Added
+
+- Native JSONC language support with line comments (`//`), block comments (`/* */`), and trailing commas
+- JSON bracket pairs and auto-closing support
+- JSONC-specific editor features (comment toggling, bracket matching)
+
+### Removed
+
+- **BREAKING:** Multi-language injection support (HTML, CSS, JS, XML, etc.)
+- **BREAKING:** Dynamic language/pattern configuration via settings
+- **BREAKING:** Markdown fenced code block support
+- **BREAKING:** Go source file injection support (double-quoted and raw strings)
+- **BREAKING:** Support for `.go.txt`, `.go.tpl`, `.go.tmpl`, `.gtpl` file extensions
+- **BREAKING:** `go-template.reload` command
+- **BREAKING:** `go-template.languages` and `go-template.patterns` settings
+
 ## [0.2.1] - 2021-03-15
 
 ### Fixed
