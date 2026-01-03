@@ -1,8 +1,8 @@
 # JSONC Go Template Support for VSCode
 
-[![GitHub license](https://img.shields.io/github/license/jinliming2/vscode-go-template.svg)](https://raw.githubusercontent.com/jinliming2/vscode-go-template/master/LICENSE)
-
 Syntax highlighting for Go text/template syntax embedded in JSONC (JSON with Comments) files.
+
+> **Note:** This is a specialized fork focused exclusively on `.jsonc.gotmpl` files. The original extension supported multiple file types and languages.
 
 ## Features
 
@@ -43,7 +43,12 @@ Syntax highlighting for Go text/template syntax embedded in JSONC (JSON with Com
 
 ## Installation
 
-Install from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=jinliming2.vscode-go-template) or build from source.
+See [INSTALL.md](./INSTALL.md) for installation instructions.
+
+**Quick install:** If you have the `.vsix` file, run:
+```bash
+code --install-extension vscode-jsonc-gotmpl-0.3.0.vsix
+```
 
 ## Known Issues
 
@@ -52,6 +57,10 @@ Install from the [Visual Studio Marketplace](https://marketplace.visualstudio.co
 ## Release Notes
 
 See [CHANGELOG.md](./CHANGELOG.md) for version history.
+
+## Credits
+
+Based on [vscode-go-template](https://github.com/jinliming2/vscode-go-template) by jinliming2.
 
 ## License
 
