@@ -2,7 +2,7 @@
 
 Syntax highlighting for Go text/template syntax embedded in JSONC (JSON with Comments) files.
 
-> **Note:** This is a specialized fork focused exclusively on `.jsonc.gotmpl` files. The original extension supported multiple file types and languages.
+> **Note:** This is a specialized fork of [vscode-go-template](https://github.com/jinliming2/vscode-go-template) by [jinliming2](https://github.com/jinliming2), modified to focus exclusively on `.jsonc.gotmpl` files. The original extension supported multiple file types and languages - this version was adapted to work well for the specific case of JSONC files with Go template syntax.
 
 ## Features
 
